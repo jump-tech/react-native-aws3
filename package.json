@@ -1,5 +1,5 @@
 {
-  "name": "react-native-aws3",
+  "name": "@jump-tech/react-native-aws3",
   "version": "0.0.8",
   "description": "Pure JavaScript react native library for uploading to AWS S3",
   "author": {
@@ -47,7 +47,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/benjreinhart/react-native-aws3"
+    "url": "git@github.com:jump-tech/react-native-aws3.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "url": "ssh://git@github.com:jump-tech/react-native-aws3.git",
+    "directory": "lib",
+    "allow-same-version": true
   },
   "bugs": {
     "url": "https://github.com/benjreinhart/react-native-aws3/issues"
