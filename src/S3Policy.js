@@ -55,6 +55,19 @@ export class S3Policy {
     ].join('/');
 
     const policy = formatPolicyForEncoding(policyParams);
+
+    if (options.meta) {
+      Object.keys(options.meta).forEach((k) => {
+        policy.conditions.push(["starts-with", `$${k}`, ""]);
+      });
+    }
+
+    if (options.headers) {
+      Object.keys(options.headers).forEach((k) => {
+        policy.conditions.push(["starts-with", `$${k}`, ""]);
+      });
+    }
+
     const base64EncodedPolicy = getEncodedPolicy(policy);
     const signature = getSignature(base64EncodedPolicy, policyParams);
 
@@ -143,7 +156,7 @@ const formatPolicyForEncoding = (policy) => {
   };
   
   if(policy.sessionToken) {
-    formattedPolicy.conditions.push({'x-amz-security-token': policy.sessionToken});
+      formattedPolicy.conditions.push({'x-amz-security-token': policy.sessionToken});
   }
   
   return formattedPolicy;
