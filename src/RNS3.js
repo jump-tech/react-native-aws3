@@ -42,8 +42,12 @@ export class RNS3 {
     const method = "POST"
     const policy = S3Policy.generate(options)
     const headers = options.headers ? options.headers : {};
+    const meta = options.meta ? options.meta : {};
 
-    return Request.create(url, method, policy, headers)
+    let request = Request.create(url, method, policy, headers);
+    Object.keys(meta).forEach((k) => request.set(k, meta[k]));
+
+    return request
       .set("file", file)
       .send()
       .then(setBodyAsParsedXML)
